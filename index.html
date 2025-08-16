@@ -32,7 +32,7 @@
         function redirecionar() {
             // Este é o URL do seu webhook que irá gerenciar o redirecionamento
             const n8nWebhookUrl = 'https://webhook-cfn2.wpp-app.org/webhook/presseljohnny2';
-            window.location.href = n8nWebhookUrl;
+            window.location.replace(n8nWebhookUrl); // Redirecionamento imediato
         }
         
         // Função para enviar o evento de PageView para o Facebook Pixel
@@ -46,17 +46,16 @@
     <script>
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)}; 
         if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
         n.queue=[];t=b.createElement(e);t.async=!0;
         t.src=v;s=b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '2218851171878721');
-        fbq('track', 'PageView');
     </script>
 </head>
-<body onload="setTimeout(redirecionar, 5000); enviarPixel();" class="flex flex-col items-center justify-center min-h-screen bg-white text-gray-800 p-4">
+<body onload="setTimeout(function(){enviarPixel(); redirecionar();}, 100);" class="flex flex-col items-center justify-center min-h-screen bg-white text-gray-800 p-4">
     <div class="loading-spinner w-12 h-12 rounded-full border-4 border-gray-200" style="border-top-color: #3498DB;"></div>
     <h1 class="text-2xl font-bold text-center mt-8">Aguarde alguns segundos, vou liberar o que prometi para você...</h1>
 </body>
