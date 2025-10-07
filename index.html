@@ -1,62 +1,106 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Redirecionando...</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Sua Página de Redirecionamento</title>
+
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    
+    fbq('init', '2218851171878721'); 
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2218851171878721&ev=PageView&noscript=1"
+    /></noscript>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5; /* Um cinza claro, mais suave */
+            color: #1c1e21; /* Cor de texto escura */
+            text-align: center;
         }
 
-        .loading-spinner {
-            animation: rotate 1s linear infinite;
-            border-top-color: #3498DB;
+        .container {
+            max-width: 90%;
+            padding: 20px;
         }
-        
-        @keyframes rotate {
-            0% {
-                transform: rotate(0);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
+
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border-left-color: #0d6efd; /* Azul moderno */
+            animation: spin 1s ease infinite;
+            margin: 0 auto 24px auto; /* Centraliza o spinner e dá espaço abaixo */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        h1 {
+            font-size: 1.6em;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+        }
+
+        p {
+            font-size: 1.1em;
+            color: #606770; /* Cinza mais escuro para melhor leitura */
+            margin: 0;
         }
     </style>
-    <script>
-        // Função para redirecionar para o webhook do n8n
-        function redirecionar() {
-            // Este é o URL do seu webhook que irá gerenciar o redirecionamento
-            const n8nWebhookUrl = 'https://webhook-cfn2.wpp-app.org/webhook/presseljohnny2';
-            window.location.replace(n8nWebhookUrl); // Redirecionamento imediato
-        }
-        
-        // Função para enviar o evento de PageView para o Facebook Pixel
-        function enviarPixel() {
-            if (typeof fbq === 'function') {
-                fbq('track', 'PageView');
-            }
-        }
-    </script>
-    <!-- Pixel do Facebook -->
-    <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)}; 
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '2218851171878721');
-    </script>
 </head>
-<body onload="setTimeout(function(){enviarPixel(); redirecionar();}, 100);" class="flex flex-col items-center justify-center min-h-screen bg-white text-gray-800 p-4">
-    <div class="loading-spinner w-12 h-12 rounded-full border-4 border-gray-200" style="border-top-color: #3498DB;"></div>
-    <h1 class="text-2xl font-bold text-center mt-8">Aguarde alguns segundos, vou liberar o que prometi para você...</h1>
+<body>
+
+    <div class="container">
+        <div class="spinner"></div>
+        <h1>Aguarde um instante...</h1>
+        <p>Estamos preparando tudo para você.</p>
+    </div>
+
+    <script>
+        function redirecionarParaWhatsApp() {
+            const numeroWhatsApp = '5542998619278';
+            const mensagens = [
+                'Ooi Gata, tudo bem?',
+                'OII, quero falar com você agora',
+                'Olá, quero te conhecer melhor',
+                'E aí, gata! Bora conversar?',
+                'Oie, vi seu perfil e me interessei',
+                'Olá, vamos nos conhecer?',
+                'Oi, te achei interessante',
+                'Oie, tá livre pra conversar?',
+                'Oi, me chama aqui pra gente conversar',
+                'Olá, gostei do seu perfil'
+            ];
+            const mensagemSorteada = mensagens[Math.floor(Math.random() * mensagens.length)];
+            const mensagemCodificada = encodeURIComponent(mensagemSorteada);
+            const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`;
+            window.location.href = linkWhatsApp;
+        }
+
+        // Tempo de espera antes do redirecionamento
+        setTimeout(redirecionarParaWhatsApp, 2000); // 2 segundos
+    </script>
+
 </body>
 </html>
